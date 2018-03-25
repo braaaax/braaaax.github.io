@@ -238,7 +238,6 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
-  jekyll-theme-hacker
 
 BUNDLED WITH
    1.13.6
