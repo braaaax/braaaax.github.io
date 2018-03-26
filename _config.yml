@@ -1,6 +1,5 @@
-title: BRAAAAX
+title: Hacker theme
+description: Hacker is a theme for GitHub Pages.
+show_downloads: true
+google_analytics:
 theme: jekyll-theme-hacker
-name: braaaax
-description: Hacker/Developer/Noob
-url: https://braaaax.github.io
-baseurl: http://braaaax.github.io/braaaax.github.io
