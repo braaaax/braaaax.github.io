@@ -8,7 +8,7 @@ This site is for educational purposes.
 
 ### More Information
 
-Consumer of all things infor sec.
+Consumer of all things info sec.
 
 ### Contact me
 
