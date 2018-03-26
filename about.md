@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+This site is for educational purposes.
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+Consumer of all things infor sec.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[chris.credle@gmail.com](mailto:chris.credle@gmail.com)
