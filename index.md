@@ -2,7 +2,17 @@
 layout: default
 ---
 
+<div class="posts">
+  {% for post in site.posts %}
+    <article class="post">
 
-WELCOME
+      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
 
-This is a test of an index.md page. 
+      <div class="entry">
+        {{ post.excerpt }}
+      </div>
+
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    </article>
+  {% endfor %}
+</div>
