@@ -100,7 +100,7 @@ Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\run`
 
 
 # Convert String from ascii to Base64:
-[System.Convert]::ToBase64String([System.Text.Encoding]::UTF8GetBytes("PS Encode me!""))
+[System.Convert]::ToBase64String([System.Text.Encoding]::UTF8GetBytes("PS Encode me!"))
 
 
 # NETWORKING
