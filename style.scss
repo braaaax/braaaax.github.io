@@ -78,8 +78,8 @@ a {
 }
 
 ul, ol {
-  margin: 2px 0;
-  padding-left: 5px;
+  margin: 15px 0;
+  padding-left: 30px;
 }
 
 ul {
@@ -224,8 +224,8 @@ nav {
   }
 
   a {
-    margin-left: 5px;
-    color: $lightGray;
+    margin-left: 20px;
+    color: $darkGray;
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
@@ -254,7 +254,7 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $lightGray;
+    border-left: 2px solid $gray;
     padding: 0.1em 1em;
     color: $gray;
     font-size: 22px;
