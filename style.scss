@@ -78,8 +78,8 @@ a {
 }
 
 ul, ol {
-  margin: 15px 0;
-  padding-left: 30px;
+  margin: 2px 0;
+  padding-left: 5px;
 }
 
 ul {
@@ -224,8 +224,8 @@ nav {
   }
 
   a {
-    margin-left: 20px;
-    color: $darkGray;
+    margin-left: 5px;
+    color: $lightGray;
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
@@ -253,13 +253,12 @@ nav {
 
 .post {
   blockquote {
-    //margin: 1.8em .8em;
-    //border-left: 2px solid $gray;
-    border: 1px solid $lightGray
+    margin: 1.8em .8em;
+    border-left: 2px solid $lightGray;
     padding: 0.1em 1em;
     color: $gray;
-    //font-size: 22px;
-    //font-style: italic;
+    font-size: 22px;
+    font-style: italic;
   }
 
   .comments {
