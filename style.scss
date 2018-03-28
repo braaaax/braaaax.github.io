@@ -126,7 +126,7 @@ img {
   background: $lightGray;
 }
 ::selection {
-  color: $black;
+  color: $lightGray;//$black;
   background: $lightGray;
 }
 
@@ -254,7 +254,7 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $gray;
+    border-left: none;//2px solid $gray;
     padding: 0.1em 1em;
     color: $gray;
     font-size: 22px;
