@@ -17,7 +17,7 @@ In a typical scenario we are querying our "DNS Server" kali box from a Windows m
 
 Then receive our data, DNS runs on port 53 typically, with tcpdump like so:
 
-`tcpdump -lvi tun0 "udp port 53"`
+`tcpdump -lvi eth0 "udp port 53"`
  
 `-l` line buffered
 
@@ -25,7 +25,7 @@ Then receive our data, DNS runs on port 53 typically, with tcpdump like so:
 
 `-i` interface
 
-`"udp port 53"` port and protocal
+`"udp port 53"` port and protocol
 
 So let's see it in action by exfiltrating directory information from a Windows 10 box to our kali box.
 We'll loop over the items in our target directory and send a DNS query for each one like so:
