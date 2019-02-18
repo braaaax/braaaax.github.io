@@ -4,8 +4,11 @@ title: HTB Giddy -- medium
 ---
 
 Quick overview:
-IIS Server hosting site with SQLi vulnerbility. Use dirtree to execute Out-of-Band SQLi to responder to capture netNTLM hash. Crack the hash with hashcat for credentialed access via winrm. Log in as Stacy and find constrained powershell and Windows Defender. Enumerate and find vulnerable Unifi-Video service.
-Use the Spookflare dropper and loader to drop a .cs payload in the directory of the service (\ProgramData\unifi-video\payload.cs) then used ‘lolbin’ cse.exe to compile the cs file. Restart the service and get an Administrator shell.
+IIS Server hosting site with SQLi vulnerbility. 
+Use dirtree to execute Out-of-Band SQLi to responder to capture netNTLM hash. Crack the hash with hashcat for credentialed access via winrm. 
+Log in as Stacy and find constrained powershell and Windows Defender. Enumerate and find vulnerable Unifi-Video service.
+Use the Spookflare dropper and loader to drop a .cs payload in the directory of the service (\ProgramData\unifi-video\payload.cs) then used ‘lolbin’ cse.exe to compile the cs file. 
+Restart the service and get an Administrator shell.
 
 Starting off with an nmap scan, increasing the `--min-rate` and lowering the `--max-retries` to quickly scan every tcp port, we find web services running on 
 ports 80 and 443 as well as RDP and WinRM services running on 3389 and 5985 respectively.
