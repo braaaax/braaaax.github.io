@@ -59,3 +59,10 @@ A great part of ST is the access to its ecosystem of modules. If you are familia
 
 There you have it, the basics of SILENTTRINITY. As of this writing Defender is unable to find and/or kill these payloads. Maybe things will change when .NET 4.8 is released when AMSI will have some insight into external .NET applications.
 
+Also of note: ST accepts resource files. So if you wanted to immediately start up a listener you can do so by listing the necessary commands in a txt file, one command per line. 
+
+```bash
+echo $'listeners\nuse http\nstart\n' > ST.rc
+python3.7 st.py -r ~/ST.rc
+```
+
