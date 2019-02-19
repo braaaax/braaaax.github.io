@@ -33,16 +33,16 @@ Again, make sure the directory you run the command contains the Dockerfile.
 docker build -t elite .
 ```
 
-Create the Elite container client and connect with the Covenant server and remove when closed.
+Create the Elite container client and bind the directory, indicated by the absolute path, to the /app/Data directory, connect with the Covenant server and remove when closed. We need to add a bind mount so that we can grab our generated files!
 ```
 docker run -it --rm --name elite -v /root/cov/brax:/app/Data elite --username brax --computername 192.168.0.128
 ```
 ![](https://braaaax.github.io/braaaax.github.io/images/Covenant-startelite.png)
 
 
-Start listener:
+Start listener adn set the connection address to our kali box. It will be set to the ip of the docker container by default.
 ```
-listeners
+Listeners
 http
 set ConnectAddress 192.168.0.128
 start
@@ -51,10 +51,18 @@ start
 
 ![](https://braaaax.github.io/braaaax.github.io/images/Covenant-startLISTENER.png)
 
+We'll refer to our Listener by the name give, or one that we choose, when generating a Launcher.
+![](https://braaaax.github.io/braaaax.github.io/images/Covenant-msbuildlauncher.png)
+
+We execute out launcher on a windows host:
+![](https://braaaax.github.io/braaaax.github.io/images/Covenant-windowsexec.png)
+
+and get a notification that our Grunt has been activated:
+`[*] Grunt: 9dae457c70 from: 192.168.0.116 has been activated!`
+
+Now we have a Grunt and we can Interact with our Grunt and choose one of the many modules to run against our Windows host. 
 ![](https://braaaax.github.io/braaaax.github.io/images/Covenant-GRUNTS.png)
 
 ![](https://braaaax.github.io/braaaax.github.io/images/Covenant-interact.png)
 
 ![](https://braaaax.github.io/braaaax.github.io/images/Covenant-modules.png)
-
-![](https://braaaax.github.io/braaaax.github.io/images/Covenant-indicators.png)
