@@ -58,6 +58,7 @@ We execute out launcher on a windows host:
 ![](https://braaaax.github.io/braaaax.github.io/images/Covenant-windowsexec.png)
 
 and get a notification that our Grunt has been activated:
+
 `[*] Grunt: 9dae457c70 from: 192.168.0.116 has been activated!`
 
 Now we have a Grunt and we can Interact with our Grunt and choose one of the many modules to run against our Windows host. 
